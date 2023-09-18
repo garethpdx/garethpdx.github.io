@@ -1,37 +1,33 @@
 import React, { useState } from 'react';
 
 const Form = ({ onToggle }) => {
-    const [activeButtons, setActiveButtons] = useState({});
-
-    const myButton = {
-	id:1,
-	shortdesc:"short desc",
-	longdesc:"a longer description"
-    }
-    const toggleButton = (button) => {
-	if(activeButtons[myButton.id]){
-	    delete activeButtons[myButton.id];
-	} else {
-	    activeButtons[myButton.id] = true;
+    const buttons = [
+	{
+	    key: 1,
+	    shortdesc:"Python",
+	    longdesc:"I've used python a lot.",
+	    category: 'languages'
+	},
+	{
+	    key: 2,
+	    shortdesc: "React",
+	    longdesc:"This is the first time I've used react.",
+	    category:"frameworks"
 	}
-	setActiveButtons(activeButtons);
-	let desc = '';
-	if(activeButtons[myButton.id]){
-	    desc = myButton.longdesc;
-	};
-	onToggle(desc);
-    };    
+    ];
+
+    const toggleButton = (button) => {
+	onToggle(button.longdesc);
+    };
     return (
-	<div className="bg-gray-100 p-4">
-	    <p>
-		{myButton.shortdesc}
-	    </p>
-	    <input
-		onClick={toggleButton}
-			type="checkbox"
-			className="bg-orange-100 p-4"
-			name="checkone"
-	    />
+	        <div>
+	      	    <a
+			key={button.key}
+			onClick={() => toggleButton(button)}
+		    >
+			{button.shortdesc}
+		    </a>
+	        </div>
 	</div>
     );
 };
