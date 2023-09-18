@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 
-import Display from '../components/Display';
-import Form from '../components/Form';
+
+import Display from '../components/display';
+import Form from '../components/form';
 
 const IndexPage = () => {
     const [content, setContent] = useState('');
     const handleToggle = (description) => {
-	setContent((prevContent) => prevContent + description);
+	setContent((prevContent) => description);
     };
     return (
 	<div>
-	    <Display content={content} />
+	    <Display display={content} />
 	    <Form onToggle={handleToggle} />
 	</div>
     );
