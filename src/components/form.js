@@ -1,20 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Form = ({ onToggle }) => {
-    const buttons = [
-	{
-	    key: 1,
-	    shortdesc:"Python",
-	    longdesc:"I've used python a lot.",
-	    category: 'languages'
-	},
-	{
-	    key: 2,
-	    shortdesc: "React",
-	    longdesc:"This is the first time I've used react.",
-	    category:"frameworks"
-	}
-    ];
+    const [buttons, setButtonData] = useState([]);
+
+    useEffect(() => {
+	fetch('/buttons.json')
+	    .then((response) => response.json())
+	    .then((data) => {
+		setButtonData(data);
+	    })
+	    .catch((error) => {
+		console.error('Error fetching button data:', error);
+	    });
+    }, []);
+
     // languages, frameworks, databases, leadership
     let categories = [... new Set(buttons.map((button) => button.category))];
 
