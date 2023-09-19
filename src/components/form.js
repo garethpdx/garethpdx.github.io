@@ -4,7 +4,7 @@ const Form = ({ onToggle }) => {
     const [buttons, setButtonData] = useState([]);
 
     useEffect(() => {
-	fetch('/buttons.json')
+	fetch('https://s3.us-west-2.amazonaws.com/blog.baselin.es/buttons.json')
 	    .then((response) => response.json())
 	    .then((data) => {
 		setButtonData(data);
